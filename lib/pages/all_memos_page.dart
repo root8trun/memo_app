@@ -6,6 +6,7 @@ import 'memo_edit_page.dart';
 import 'deleted_memos_page.dart';
 import '../views/memo_list_view.dart';
 import 'favorite_memos_page.dart';
+import 'setting_page.dart';
 
 class AllMemosPage extends StatelessWidget {
   const AllMemosPage({super.key});
@@ -13,6 +14,7 @@ class AllMemosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final memoModel = Provider.of<MemoModel>(context);
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memo App'),
@@ -20,14 +22,16 @@ class AllMemosPage extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                //color: Theme.of(context).colorScheme.primaryContainer,
+                //color: Colors.cyan,
+                color: theme.colorScheme.primary,
               ),
               child: Text(
                 'Memo App',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: theme.colorScheme.onPrimary,
                   fontSize: 24,
                 ),
               ),
@@ -59,6 +63,18 @@ class AllMemosPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const DeletedMemosPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Setting'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingPage(),
                   ),
                 );
               },

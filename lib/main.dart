@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/memo_model.dart';
 import 'pages/all_memos_page.dart';
+import 'models/setting_model.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => MemoModel(),
-      child: const MemoApp(),
-    ),
-  );
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => MemoModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => SettingModel(),
+      ),
+    ],
+    child: const MemoApp(),
+  ));
 }
 
 class MemoApp extends StatelessWidget {
@@ -17,11 +23,18 @@ class MemoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingModel = Provider.of<SettingModel>(context);
     return MaterialApp(
       title: 'Memo App',
+
+      /*
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        useMaterial3: false,
+        //primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
+      */
+      theme: settingModel.themeData,
       home: const AllMemosPage(),
     );
   }

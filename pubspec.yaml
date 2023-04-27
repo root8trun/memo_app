@@ -40,6 +40,7 @@ dependencies:
   uuid: ^3.0.7
   timeago: ^3.4.0
   flutter_slidable: ^2.0.0
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -93,3 +94,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
